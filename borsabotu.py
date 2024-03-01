@@ -74,7 +74,7 @@ while True:
         print("Fark", son_fiyat - yeni_son_fiyat)
         print(yeni_son_fiyat)
         print("*" * 50)
-
+# Bu bir yatırım tavsiyesi değildir. Yalnızca fiyat hareketlerini izlemek için bir araçtır.
         #MIT License
 
 #Copyright (c) 2024 mericorhay
