@@ -13,8 +13,11 @@ pip install requests
 pip install beautifulsoup4
 pip install keyboard
 3. Betiği çalıştırın:
-4. 4. İlgilendiğiniz hisse senedinin Google Finans URL'sini girin, kontrol aralığını ve lot maliyetini belirtin.
+4. İlgilendiğiniz hisse senedinin Google Finans URL'sini girin, kontrol aralığını ve lot maliyetini belirtin.
 5. Program, fiyatı belirli aralıklarla izleyecek ve kar/zarar durumunu hesaplayacaktır.
+################ Eğer borsa istanbul haricinde diğer hisselerle işlem yapılacaksa ################
+                              fiyat = fiyat[1:-3] kod satırı line 28
+                              fiyat[:-3] Olarak değiştirilmelidir
 
 ## Lisans
 
