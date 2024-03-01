@@ -15,7 +15,7 @@ pip install keyboard
 3. Betiği çalıştırın:
 4. İlgilendiğiniz hisse senedinin Google Finans URL'sini girin, kontrol aralığını ve lot maliyetini belirtin.
 5. Program, fiyatı belirli aralıklarla izleyecek ve kar/zarar durumunu hesaplayacaktır.
-6.################ Eğer Borsa İstanbul haricinde diğer hisselerle işlem yapılacaksa ################ fiyat = fiyat[1:-3] (kod satırı line 28)  ,  fiyat[:-3] Olarak değiştirilmelidir
+7. Eğer Borsa İstanbul haricinde diğer hisselerle işlem yapılacaksa  fiyat = fiyat[1:-3] (kod satırı line 28)  ,  fiyat[:-3] Olarak değiştirilmelidir
 
 
 ## Lisans
