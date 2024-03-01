@@ -1,6 +1,6 @@
 # borsabotu
 Hisse senedi fiyat takipçisi
-
+# Bu bir yatırım tavsiyesi değildir. Yalnızca fiyat hareketlerini izlemek için bir araçtır.
 # Hisse Senedi Fiyat Takipçisi
 
 Bu Python betiği, Google Finans'tan bir hisse senedinin fiyatını izler ve kullanıcı tanımlı parametrelere göre kar/zarar hesaplar.
