@@ -1,11 +1,59 @@
 #Kütüphaneler
-import sys
-import keyboard
+from smtplib import SMTP
 import requests
 from bs4 import BeautifulSoup
 import time
+#BULUTTA ÇALIŞACAĞI İÇİN KEYBOARD KÜTÜPHANESİ VE ÇIKMA FONKSİYONU EKLENMEDİ
 #URLSETTİNGS
 #FONKSİYONLAR
+from smtplib import SMTP
+
+def mailto(sonkar_zarar):
+    try:
+        baslik = "Borsa Bilgilendirme Mesajınız"
+        mesaj = None
+        # Hesaplama yapılacak değer
+        if sonkar_zarar >= int(karlılık):
+            mesaj = f"Sistem Kendini Uykuya aliyor (20 Dakika) {sonkar_zarar} TL Kadar Kar Ettiniz"
+            if mesaj is not None:
+                content = "Subject:{0}\n\n{1}".format(baslik, mesaj)
+
+                mailiniz = "*********"
+                sifreniz = "*********"
+                gidecek = "***********" #Gİdecek Kişinin Maili
+
+                outlook = SMTP("smtp-mail.outlook.com", 587)
+                outlook.starttls()
+                outlook.login(mailiniz, sifreniz)
+                outlook.sendmail(mailiniz, gidecek, content.encode("utf-8"))
+
+                print("Mail Gönderme İşlemi Başarılı")
+            time.sleep(1200)
+
+        elif sonkar_zarar <= int(abs(karlılık)):
+            mesaj = f"Sistem Kendini Uykuya aliyor (20 Dakika) {sonkar_zarar} TL Kadar Zarar Ettiniz"
+            if mesaj is not None:
+                content = "Subject:{0}\n\n{1}".format(baslik, mesaj)
+
+                mailiniz = "mericorhayy@gmail.com"
+                sifreniz = "4680215m"
+                gidecek = "zoramagercek@gmail.com"
+
+                outlook = SMTP("smtp-mail.outlook.com", 587)
+                outlook.starttls()
+                outlook.login(mailiniz, sifreniz)
+                outlook.sendmail(mailiniz, gidecek, content.encode("utf-8"))
+
+                print("Mail Gönderme İşlemi Başarılı")
+            time.sleep(1200)
+
+
+    except Exception as e:
+        print("Mail Gönderilemedi")
+        print(e)
+
+
+
 def karzarar():
     alis_maliyeti = lotmaliyet * lotsayisi
     satis_geliri = yeni_son_fiyat * lotsayisi
@@ -14,7 +62,7 @@ def karzarar():
     print("Anlık Kar/Zarar",sonkar_zarar)
     return sonkar_zarar
 #FONKSİYONLAR BİTİŞ
-
+karlılık = input("Kaç TL kazandığınızda Otomaik Olarak Mail Gönderilsin")
 url = input("Lütfen bir Google Financeda ilgilendiğiniz hissenin URL sini giriniz: ")
 zaman = float(input("Kaç Saniye Sonra Veriyi Karşılaştıracağını Giriniz (Saniye Cinsinden)"))
 lotmaliyet = int(input("Lot Maliyetinizi Giriniz"))
@@ -50,9 +98,7 @@ while True:
         print("Hata: Yeni fiyat verisi uygun formatta değil.")
         continue
 
-    if keyboard.is_pressed('q'):
-        print("Program sonlandırılıyor...")
-        sys.exit()
+
     if yeni_son_fiyat > son_fiyat:
         karzarar()
         print("Fiyat Yükseldi")
@@ -60,6 +106,8 @@ while True:
         print("Eski Fiyat", son_fiyat)
         print("Fark", yeni_son_fiyat - son_fiyat)
         print("*" * 50)
+        sonkar_zarar = karzarar()
+        mailto(sonkar_zarar)
 
     elif yeni_son_fiyat == son_fiyat:
         karzarar()
@@ -67,6 +115,8 @@ while True:
         print("Yeni Fiyat", yeni_son_fiyat)
         print("Eski Fiyat", son_fiyat)
         print("*"*50)
+        sonkar_zarar = karzarar()
+        mailto(sonkar_zarar)
 
     else:
         karzarar()
@@ -74,34 +124,5 @@ while True:
         print("Fark", son_fiyat - yeni_son_fiyat)
         print(yeni_son_fiyat)
         print("*" * 50)
-# Bu bir yatırım tavsiyesi değildir. Yalnızca fiyat hareketlerini izlemek için bir araçtır.
-        #MIT License
-
-#Copyright (c) 2024 mericorhay
-
-#Permission is hereby granted, free of charge, to any person obtaining a copy
-#of this software and associated documentation files (the "Software"), to deal
-#in the Software without restriction, including without limitation the rights
-##copies of the Software, and to permit persons to whom the Software is
-#furnished to do so, subject to the following conditions:
-
-##copies or substantial portions of the Software.
-
-#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-#SOFTWARE.
-
-
-#MIT License
-
-#Telif Hakkı © 2024 [mericorhay]
-
-#Bu yazılım ve belgelendirme dosyaları ("Yazılım"), kullanım, kopyalama, değiştirme, birleştirme, yayımlama, dağıtma, alt lisanslama ve/veya satma hakkına sahip olan herkese verilmiştir, yazılımın kopyalarını sunan ve aşağıdaki koşulların altında:
-
-#YAZILIM "OLDUĞU GİBİ" SAĞLANIR, HERHANGİ BİR GARANTİ VERİLMEMEKTEDİR, SATILABİLİRLİK, BELİRLİ BİR AMACA UYGUNLUK VEYA İHLAL DURUMU DAHİL OLMAK ÜZERE AÇIK VEYA ZIMNİ HER TÜRLÜ GARANTİLER DAHİL OLMAK ÜZERE, ANCAK BUNLARLA SINIRLI VE BU YAZILIM İLE İLGİLİ RİSKLERİN SİZİN SORUMLULUĞUNUZDA OLDUĞUNU KABUL EDER. HERHANGİ BİR KOŞULDA, YAZARLAR VEYA TELİF HAKKI SAHİPLERİ HERHANGİ BİR TALEP, ZARAR VEYA DİĞER SORUMLULUKTAN SORUMLU DEĞİLDİR, YAZILIMLA VEYA YAZILIMIN KULLANIMI VEYA BAŞKA YAZILIMLARLA İLGİLİ.
-
-
+        sonkar_zarar = karzarar()
+        mailto(sonkar_zarar)
