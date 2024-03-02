@@ -6,7 +6,7 @@ import time
 #BULUTTA ÇALIŞACAĞI İÇİN KEYBOARD KÜTÜPHANESİ VE ÇIKMA FONKSİYONU EKLENMEDİ
 #URLSETTİNGS
 #FONKSİYONLAR
-from smtplib import SMTP
+
 
 def mailto(sonkar_zarar):
     try:
